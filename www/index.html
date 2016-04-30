@@ -1,0 +1,119 @@
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+  <script type="application/shiny-singletons"></script>
+  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.11.3];shiny[0.13.2];selectize[0.11.2];bootstrap[3.3.5]</script>
+  <script src="shared/json2-min.js"></script>
+  <script src="shared/jquery.min.js"></script>
+  <link href="shared/shiny.css" rel="stylesheet">
+  <script src="shared/shiny.min.js"></script>
+  <link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="shared/selectize/js/es5-shim.min.js"></script>
+  <![endif]-->
+  <script src="shared/selectize/js/selectize.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="shared/bootstrap/js/bootstrap.min.js"></script>
+  <script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+  <script src="shared/bootstrap/shim/respond.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/selectize.bootstrap3.css" rel="stylesheet">
+
+</head>
+<body>
+  
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.genebrown.info">Home</a>
+      </div>
+      <!-- <div class="navbar-title center">Distribution</div> -->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="mailto:efbbrown@gmail.com" title="Email Me"><img class="link-icon" src="imgs/email.png"></a>
+          </li>
+          <li>
+            <a href="https://github.com/efbbrown" title="GitHub"><img class="link-icon" src="imgs/GitHub-Mark-Light-32px.png"></a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/eugene-brown-a9435773" title="LinkedIn"><img class="link-icon" src="imgs/In-White-34px-R.png"></a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+      </div>
+    <!-- /.container -->
+    </nav>
+  
+  <div class="container">
+    
+    <h3>T-tester</h3>
+    <p class="intro">The t-test tests for a difference in the mean of two samples. This calculator performs the unpaired t-test, which assumes that the samples are independent of one another.</p>
+    <p class="intro">The samples must also be similarly distributed & if the samples consist of less than 45 observations, they should be more or less symmetrical.</p>
+    
+    <div id="input-container" class="left">
+      
+      <div id="table-container">
+        
+        <p id="test">Enter your test results here: </p>
+        <!--
+        <label for="numGroups">Number of Groups in test: </label>
+        <input id="numGroups" type="number" value="2" min="2">
+        -->
+        <div class="button-container" id="run-container">
+          <div class="button" id="run">Run</div>
+        </div>
+        
+      </div>
+      <!--
+      <div id="upload-container">
+        
+        <br>
+        <p>Or upload them in a .csv here: </p>
+        
+        <div id="upload-container">
+          <input id="upload-input" type="file" accept="text/csv,text/comma-separated-values">
+          <div class="button-container" id="upload-button-container"><div class="button" id="upload">Upload</div></div>
+        </div>
+        
+      </div>
+      -->
+    </div>
+    
+    <div id="output-container" class="hidden">
+      
+      <div id="chart"></div>
+      
+      <div id="conclusion">
+        <p><span class="bold">Null Hypothesis:</span> The means of each population are equal; &#956;1 = &#956;2</p>
+        <p><span class="bold">Alternative Hypothesis:</span> The means of each population are not equal; &#956;1 	&#8800; &#956;2</p>
+        <p><span class="bold">Confidence Level:</span> 95%</p>
+        <p><span class="bold">P-Value</span><span id="p-value"></span></p>
+        <p>Reject null hypothesis?<span id="accept"></span></p>
+        <p><span class="bold">Verdict: </span><span id="verdict"></span></p>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <script src="js/g3/ebrown.g3.js" charset="utf-8"></script>
+  <script src="js/d3/d3.min.js" charset="utf-8"></script>
+  <script src="js/d3-jetpack/d3-jetpack.js" charset="utf-8"></script>
+  <script src="js/functions.js"></script>
+  <script src="js/script2.js"></script>
+  
+</body>
+</html>

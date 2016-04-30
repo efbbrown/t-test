@@ -1,0 +1,97 @@
+html, body {
+  width: 1200px;
+  max-width: 100%;
+  margin: 30px auto;
+  padding: 0 5px;
+  background-color: #eee;
+  font-family: monospace;
+}
+  .container {
+    padding: 0;}
+    h3 {
+      padding-bottom: 20px;
+      font-size: 36px;
+      width: 90%;
+      padding-left: 50px;
+      margin: 20px 0;
+      font-family: 'Open Sans', sans-serif; }
+    p.intro {
+      text-indent: 20px; }
+    .left {
+      /*float: left;*/ }
+    .right {
+      /*float: right;*/ }
+    .button {
+      font-family: 'Open Sans', sans-serif;
+      width: 80px;
+      height: 30px;
+      background-color: #325C74;
+      color: #fff;
+      border-radius: 8px;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center; }
+    .bold {
+      font-weight: bold; }
+    .hidden {
+      visibility: hidden; }
+    #input-container {
+      padding-top: 40px;
+      max-width: 100%;
+      width: 320px;
+      height: 170px; }
+      #upload-container {
+        padding-top: 20px;
+        border-top: 1px solid #aaa; }
+      #numGroups {
+        display: inline-block;
+        width: 50px; }
+      table {
+        margin: 20px 5px 20px;
+        border-collapse: collapse;}
+        table th, td {
+          padding: 2px;  }
+      #input-container .button-container {
+        margin: 5px 5px; }
+      #upload-input {
+        margin: 20px 0; }
+    #output-container {
+      padding-top: 40px;
+      max-width: 100%;
+      width: 1000px; }
+      #chart {
+        /*width: 500px;*/
+        height: 300px; }
+        .axis path, .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges; }
+        .axis.x * {
+          fill: none;
+          stroke: none; }
+        .chartLine {
+          fill: none;
+          stroke: #325C74;
+          stroke-width: 1.5px; }
+      #conclusion {
+        /*margin: 20px;*/}
+        #accept {
+          font-family: 'Open Sans', sans-serif;
+          margin: 4px;
+          padding: 4px 14px;
+          border-radius: 4px;
+          width: 80px;
+          height: 30px;
+          background-color: #fff;
+          color: #fff;
+          text-align: center;
+          display: inline; }
+
+body .navbar .navbar-brand {
+  font-size: 22px;
+  position: absolute;
+  bottom: 0; }
+body .navbar .link-icon {
+  height: 20px; }
+body .navbar .right {
+  float: right; }
