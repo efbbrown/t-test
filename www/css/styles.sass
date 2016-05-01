@@ -1,0 +1,98 @@
+@import 'constants'
+
+html, body
+  width: $body-width
+  max-width: 100%
+  margin: 30px auto
+  padding: 0 5px
+  background-color: $bg-color
+  color: $font-color-1
+  font-family: monospace
+  h3
+    padding-bottom: 20px
+    font-size: 36px
+    width: 90%
+    padding-left: 50px
+    margin: 20px 0
+    font-family: 'Open Sans', sans-serif
+  p.intro
+    text-indent: 20px
+  .button
+    font-family: 'Open Sans', sans-serif
+    width: 90px
+    height: 35px
+    border-radius: 8px
+    display: table-cell
+    vertical-align: middle
+    text-align: center
+    border: 1px solid $font-color-1
+    background-color: $button-bg-color
+  .bold
+    font-weight: bold
+  .hidden
+    visibility: hidden
+  .inline
+    display: inline
+  .col-md-6
+    margin: auto
+  #input-container
+    padding-top: 40px
+    max-width: 100%
+    .input.text
+      color: $font-color-2
+    #numGroups
+      display: inline-block
+      width: 50px
+    table, form
+      margin: 20px auto
+      width: 80%
+    table
+      border-collapse: collapse
+      table th, td
+        padding: 2px
+        color: $font-color-2
+    #input-container .button-container
+      margin: 5px 5px
+    input#confint
+      background-color: $bg-color
+      border: 0px
+      color: $font-color-1
+  #output-container
+    padding-top: 40px
+    max-width: 100%
+    width: 1000px
+    #chart
+      /*width: 500px*/
+      height: 300px
+      .axis path, .axis line
+        fill: none
+        stroke: #000
+        shape-rendering: crispEdges
+      .axis.x *
+        fill: none
+        stroke: none
+      .chartLine
+        fill: none
+        stroke: #325C74
+        stroke-width: 1.5px
+    #conclusion
+      /*margin: 20px*/
+      #accept
+        font-family: 'Open Sans', sans-serif
+        margin: 4px
+        padding: 4px 14px
+        border-radius: 4px
+        width: 80px
+        height: 30px
+        background-color: #fff
+        color: #fff
+        text-align: center
+        display: inline
+  .navbar .navbar-brand
+    font-size: 22px
+    position: absolute
+    bottom: 0
+  .navbar .link-icon
+    height: 20px
+  .navbar .right
+    float: right

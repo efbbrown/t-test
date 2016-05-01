@@ -1,0 +1,98 @@
+html, body {
+  width: 1200px;
+  max-width: 100%;
+  margin: 30px auto;
+  padding: 0 5px;
+  background-color: #142422;
+  color: #e2e1df;
+  font-family: monospace; }
+  html h3, body h3 {
+    padding-bottom: 20px;
+    font-size: 36px;
+    width: 90%;
+    padding-left: 50px;
+    margin: 20px 0;
+    font-family: "Open Sans", sans-serif; }
+  html p.intro, body p.intro {
+    text-indent: 20px; }
+  html .button, body .button {
+    font-family: "Open Sans", sans-serif;
+    width: 90px;
+    height: 35px;
+    border-radius: 8px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #e2e1df;
+    background-color: #142321; }
+  html .bold, body .bold {
+    font-weight: bold; }
+  html .hidden, body .hidden {
+    visibility: hidden; }
+  html .inline, body .inline {
+    display: inline; }
+  html .col-md-6, body .col-md-6 {
+    margin: auto; }
+  html #input-container, body #input-container {
+    padding-top: 40px;
+    max-width: 100%; }
+    html #input-container .input.text, body #input-container .input.text {
+      color: #262523; }
+    html #input-container #numGroups, body #input-container #numGroups {
+      display: inline-block;
+      width: 50px; }
+    html #input-container table, html #input-container form, body #input-container table, body #input-container form {
+      margin: 20px auto;
+      width: 80%; }
+    html #input-container table, body #input-container table {
+      border-collapse: collapse; }
+      html #input-container table table th, html #input-container table td, body #input-container table table th, body #input-container table td {
+        padding: 2px;
+        color: #262523; }
+    html #input-container #input-container .button-container, body #input-container #input-container .button-container {
+      margin: 5px 5px; }
+    html #input-container input#confint, body #input-container input#confint {
+      background-color: #142422;
+      border: 0px;
+      color: #e2e1df; }
+  html #output-container, body #output-container {
+    padding-top: 40px;
+    max-width: 100%;
+    width: 1000px; }
+    html #output-container #chart, body #output-container #chart {
+      /*width: 500px */
+      height: 300px; }
+      html #output-container #chart .axis path, html #output-container #chart .axis line, body #output-container #chart .axis path, body #output-container #chart .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges; }
+      html #output-container #chart .axis.x *, body #output-container #chart .axis.x * {
+        fill: none;
+        stroke: none; }
+      html #output-container #chart .chartLine, body #output-container #chart .chartLine {
+        fill: none;
+        stroke: #325C74;
+        stroke-width: 1.5px; }
+    html #output-container #conclusion, body #output-container #conclusion {
+      /*margin: 20px */ }
+      html #output-container #conclusion #accept, body #output-container #conclusion #accept {
+        font-family: "Open Sans", sans-serif;
+        margin: 4px;
+        padding: 4px 14px;
+        border-radius: 4px;
+        width: 80px;
+        height: 30px;
+        background-color: #fff;
+        color: #fff;
+        text-align: center;
+        display: inline; }
+  html .navbar .navbar-brand, body .navbar .navbar-brand {
+    font-size: 22px;
+    position: absolute;
+    bottom: 0; }
+  html .navbar .link-icon, body .navbar .link-icon {
+    height: 20px; }
+  html .navbar .right, body .navbar .right {
+    float: right; }
+
+/*# sourceMappingURL=s-styles.css.map */

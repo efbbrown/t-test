@@ -17,10 +17,10 @@ $(document).ready(function() {
   
   var inputTable = $("<table/>").attr("class", "group figures").html("<tr><th></th><th>Sample Size</th><th>Mean</th><th>S.D</th></tr>");
   
-  $("#run-container").before(inputTable);
+  $("#table-container").append(inputTable);
   
   var newRowStart = '<tr><td><input class="group input text" type="text" value="Sample ',
-      newRowEnd = '" style="display: inline-block; width: 100px;"></td><td><input class="group input num" type="number" value="" min="0" style="display: inline-block; width: 85px;"></td><td><input class="group input num" type="number" value="" min="1" style="display: inline-block; width: 80px;"></td><td><input class="group input num" type="number" value="" min="1" style="display: inline-block; width: 80px;"></td></tr>';
+      newRowEnd = '" style="display: inline-block; width: 100%;"></td><td><input class="group input num" type="number" value="50" min="0" style="display: inline-block; width: 100%;"></td><td><input class="group input num" type="number" value="20" min="1" style="display: inline-block; width: 100%;"></td><td><input class="group input num" type="number" value="3" min="1" style="display: inline-block; width: 100%;"></td></tr>';
   
   var numGroups = 2;
   
@@ -31,14 +31,31 @@ $(document).ready(function() {
   }
   
   /************************************************/
+  /*          Append slider input                 */
+  /************************************************/
+  
+  var confint = $( "#confint" );
+  $("#slider-range").slider({
+    range: "max",
+    min: 50,
+    max: 99.99,
+    value: +confint.val(),
+    step: 0.01,
+    slide: function( event, ui ) {
+      $( "#confint" ).val( ui.value );
+    }
+  });
+  $("#confint").val( $("#slider-range").slider("value"));
+  
+  /************************************************/
   /*          Send & receive R data               */
   /************************************************/
   
   $("#run").click(function() {
     var values = getVals();
     console.log(values);
-    if (values[0] === 0 || values[3] === 0) {
-      console.log("Size must be > 0 for both sample groups");
+    if (values[0] < 2 || values[3] < 2) {
+      console.log("Size must be > 1 for both sample groups");
     } else if (values[2] === 0 || values[5] === 0) {
       console.log("S.D must be > 0 for both sample groups");
     } else {
@@ -65,7 +82,6 @@ $(document).ready(function() {
     if (numGroups > 4) { chartStyles.height = numGroups * 60; }
     
     $("#chart").css(chartStyles);
-
     
     var cobjHor = {
       "parent": "#chart",
@@ -87,13 +103,7 @@ $(document).ready(function() {
     }
     
     var $accept = $("#accept"), $verdict = $("#verdict");
-    /*
-    if (p_value < 0.05) {
-      $accept.css({"border": "#0c0 solid 5px"}).html("Yes");
-    } else if (p_value > 0.05) {
-      $accept.css({"border": "#c00 solid 5px"}).html("No");
-    }
-    */
+
     if (p_value < 0.05) {
       $accept.css({"background-color": "#10a708"}).html("Yes");
       $verdict.html("There is evidence to suggest with 95% confidence that the means of the sample populations are unequal.");

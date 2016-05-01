@@ -19,8 +19,11 @@
   <script src="shared/bootstrap/shim/html5shiv.min.js"></script>
   <script src="shared/bootstrap/shim/respond.min.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/s-styles.css" rel="stylesheet">
   <link href="css/selectize.bootstrap3.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </head>
 <body>
@@ -57,26 +60,43 @@
     <!-- /.container -->
     </nav>
   
-  <div class="container">
+  <div class="main-container">
     
     <h3>T-tester</h3>
     <p class="intro">The t-test tests for a difference in the mean of two samples. This calculator performs the unpaired t-test, which assumes that the samples are independent of one another.</p>
     <p class="intro">The samples must also be similarly distributed & if the samples consist of less than 45 observations, they should be more or less symmetrical.</p>
     
-    <div id="input-container" class="left">
+    <div id="input-container" class="row">
       
-      <div id="table-container">
-        
-        <p id="test">Enter your test results here: </p>
+      <p id="test">Enter your test results here: </p>
+      
+      <div id="table-container" class="col-md-6">
         <!--
         <label for="numGroups">Number of Groups in test: </label>
         <input id="numGroups" type="number" value="2" min="2">
         -->
-        <div class="button-container" id="run-container">
-          <div class="button" id="run">Run</div>
-        </div>
         
       </div>
+      
+      <div id="slider-container" class="col-md-6">
+        
+        <form action="">
+          <input class="inline" type="radio" name="tail" value="1"> One Tailed
+          <input class="inline" type="radio" name="tail" value="2"> Two Tailed<br>
+        </form>
+        
+        <form action="">
+          <label for="confint">Confidence Level: </label>
+          <input class="input text" type="text" id="confint" value="95.00">
+          <div id="slider-range"></div>
+        </form>
+        <!--
+        <label for="confint">Confidence Level: </label>
+        <input type="range" id="confint" min="1" value="95" max="99.99" step=".01">
+        <output for="foo" onforminput="value = foo.valueAsNumber;"></output>
+        -->
+      </div>
+      
       <!--
       <div id="upload-container">
         
@@ -92,6 +112,14 @@
       -->
     </div>
     
+    <div class="row">
+      
+      <div class="button-container col-md-12" id="run-container">
+        <div class="button" id="run">Run</div>
+      </div>
+      
+    </div>
+    
     <div id="output-container" class="hidden">
       
       <div id="chart"></div>
@@ -99,7 +127,7 @@
       <div id="conclusion">
         <p><span class="bold">Null Hypothesis:</span> The means of each population are equal; &#956;1 = &#956;2</p>
         <p><span class="bold">Alternative Hypothesis:</span> The means of each population are not equal; &#956;1 	&#8800; &#956;2</p>
-        <p><span class="bold">Confidence Level:</span> 95%</p>
+        <p><span class="bold">Confidence Level:</span><span id="conf-level"></span></p>
         <p><span class="bold">P-Value</span><span id="p-value"></span></p>
         <p>Reject null hypothesis?<span id="accept"></span></p>
         <p><span class="bold">Verdict: </span><span id="verdict"></span></p>

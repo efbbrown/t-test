@@ -252,3 +252,11 @@ drawChartHor = function(cobj) {
     .style("text-anchor", "start");
     
 };
+
+updateChart = function(cobj) {
+  
+  var chart = d3.select(cobj.parent + " svg g");
+  
+  chart.selectAll("text").remove();
+  
+};
