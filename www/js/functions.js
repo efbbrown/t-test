@@ -16,96 +16,6 @@ function getGroups() {
   return values;
 }
 
-drawChart = function(cobj) {
-  
-  d3.selectAll(cobj.parent + " *").remove();
-  
-  var parentDiv = d3.select(cobj.parent);
-  
-  // Chart width and height, dependent on parentDiv and marginRatio 
-  var parentWidth = g3.elementWidth(parentDiv),
-      parentHeight = g3.elementHeight(parentDiv);
-  
-  var margin = {
-    top: parentHeight * cobj.margin.top, right: parentWidth * cobj.margin.right,
-    bottom: parentHeight * cobj.margin.bottom, left: parentWidth * cobj.margin.left
-  };
-  
-  // Add chart svg to parentDiv
-  chart = g3.appendChart(parentDiv, parentWidth, parentHeight, margin);
-  
-  var width = g3.chartLength(parentWidth, margin.left, margin.right),
-      height = g3.chartLength(parentHeight, margin.top, margin.bottom);
-  
-  var x = g3.scale({type: "ordinal", min: 0, max: width, space: 0.95});
-  var y = g3.scale({type: "linear", min: height, max: 0});
-  
-  var yrange = d3.extent(d3.extent(cobj.data, function(d) { return d["lower"]; }).concat(d3.extent(cobj.data, function(d) { return d["upper"]; })));
-  
-  x.domain(cobj.data.map(function(d) { return d[cobj.xvar]; }));
-  y.domain([d3.min(yrange) - 0.5*(d3.max(yrange) - d3.min(yrange)),
-            d3.max(yrange) + 0.5*(d3.max(yrange) - d3.min(yrange))
-            ]);
-  
-  var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-    
-  var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-    
-  
-  chart.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
-
-  chart.append("g")
-    .attr("class", "y axis")
-    .call(yAxis)
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", ".71em")
-    .style("text-anchor", "end")
-    .text("Success Rate");
-  /*
-  chart.append("g")
-    .attr("class", "lines")
-    .selectAll("line")
-    .data(cobj.data)
-    .enter().append("line")
-    .attr("x1", function(d) { return x(d[cobj.xvar]); })
-    .attr("x2", function(d) { return x(d[cobj.xvar]); })
-    .attr("y1", function(d) { return y(d.lower); })
-    .attr("y2", function(d) { return y(d.upper); })
-    .attr("stroke-width", 2);
-  */
-  chart.append("g")
-    .attr("class", "rects")
-    .selectAll("rect")
-    .data(cobj.data)
-    .enter().append("rect")
-    .attr("x", function(d) { return x(d[cobj.xvar]); })
-    .attr("y", function(d) { return y(d.upper); })
-    .attr("height", function(d) { return y(d.lower) - y(d.upper); })
-    .attr("width", x.rangeBand())
-    .style("fill", "#cc0000");//x.rangeRoundBand());
-    //.attr("stroke-width", 2);
-  
-  chart.append("g")
-    .attr("class", "circles")
-    .selectAll("circle")
-    .data(cobj.data)
-    .enter().append("circle")
-    .attr("cx", function(d) { return x(d[cobj.xvar]) + 0.5*x.rangeBand(); })
-    .attr("cy", function(d) { return y(d[cobj.yvar]); })
-    .attr("r", x.rangeBand())
-    .style("fill", "#000");
-  
-};
-
 drawChartHor = function(cobj) {
   
   d3.selectAll(cobj.parent + " *").remove();
@@ -255,10 +165,58 @@ drawChartHor = function(cobj) {
     
 };
 
-updateChart = function(cobj) {
+// From http://bl.ocks.org/nbremer/801c4bb101e86d19a1d0
+showTooltip = function(d) {
   
-  var chart = d3.select(cobj.parent + " svg g");
+	var element = d3.selectAll("circle.r" + d[idvar]);
+	var mapElement = d3.selectAll(".point.r" + d[idvar]);
+	
+	var contentLines = [
+	  "<span style='font-size: 11px; text-align: center;'><b>" + d.Name + ", " + d.Country + "</b></span><br>",
+	  "",
+	  "<span style='font-size: 11px; text-align: center;'>Population: <b>" + d.PrettyPop + " (" + d.PrettyRank + ")" + "</b></span>"
+	];
+	
+	createContent = function(d) {
+	  if (d["Remark"].length > 0) {
+	    contentLines[1] = "<span style='font-size: 11px; text-align: center;'>" + "Also included: <b>" + d.PrettyRemark + "</b></span><br>";
+	    return contentLines;
+	  } else {
+	    return contentLines;
+	  }
+	};
+	
+	var contentString = createContent(d);
+	
+	//Define and show the tooltip
+	$(element).popover({
+		placement: 'auto top',
+		container: '#circles',
+		trigger: 'manual',
+		html : true,
+		content: contentString
+	});
+	
+	$(element).popover('show');
+
+	//Make chosen circle more visible
+	element.attr("r", 6).style("fill", "#e67300").style("fill-opacity", 0.9);
+	mapElement.style("fill", "#000");
   
-  chart.selectAll("text").remove();
-  
+};
+
+removeTooltip = function(d) {
+
+	var element = d3.selectAll(".circle.r" + d[idvar]);
+	var mapElement = d3.selectAll(".point.r" + d[idvar]);
+	
+	//Hide tooltip
+	$('.popover').each(function() {
+		$(this).remove();
+	});
+	
+	//Make chosen circle more visible
+	element.attr("r", 3).style("fill", "#fff").style("fill-opacity", 0.4);
+	mapElement.style("fill", "#333");
+		
 };
