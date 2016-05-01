@@ -17,7 +17,7 @@ $(document).ready(function() {
   
   var inputTable = $("<table/>").attr("class", "group figures").html("<tr><th></th><th>Sample Size</th><th>Mean</th><th>S.D</th></tr>");
   
-  $("#table-container").append(inputTable);
+  $("#table-container").prepend(inputTable);
   
   var newRowStart = '<tr><td><input class="group input text" type="text" value="Sample ',
       newRowEnd = '" style="display: inline-block; width: 100%;"></td><td><input class="group input num" type="number" value="50" min="0" style="display: inline-block; width: 100%;"></td><td><input class="group input num" type="number" value="20" min="1" style="display: inline-block; width: 100%;"></td><td><input class="group input num" type="number" value="3" min="1" style="display: inline-block; width: 100%;"></td></tr>';
@@ -37,7 +37,7 @@ $(document).ready(function() {
   var confint = $( "#confint" );
   $("#slider-range").slider({
     range: "max",
-    min: 50,
+    min: 50.01,
     max: 99.99,
     value: +confint.val(),
     step: 0.01,
@@ -110,7 +110,7 @@ $(document).ready(function() {
 
     if (p_value < $siglev) {
       $accept.css({"background-color": "#10a708"}).html("Yes");
-      $verdict.html("There is evidence to suggest with 95% confidence that the means of the sample populations are unequal.");
+      $verdict.html("There is evidence to suggest with " + $confint + "% confidence that the population means are unequal.");
     } else if (p_value > $siglev) {
       $accept.css({"background-color": "#aa3939"}).html("No");
       $verdict.html("There is insufficient evidence to conclude that the means of the sample populations are unequal.");

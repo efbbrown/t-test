@@ -3,7 +3,9 @@ function getVals() {
   $('.group.input.num').each(function() {
     values.push(+$(this).val());
   });
-  return values;
+  var conflevel = +$("#confint").val();
+  var numTails = +$("input[name=tail]", "#tails").val();
+  return [values, conflevel, numTails];
 }
 
 function getGroups() {

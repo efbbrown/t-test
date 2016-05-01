@@ -18,6 +18,7 @@
   <script src="shared/bootstrap/js/bootstrap.min.js"></script>
   <script src="shared/bootstrap/shim/html5shiv.min.js"></script>
   <script src="shared/bootstrap/shim/respond.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link href="css/s-styles.css" rel="stylesheet">
   <link href="css/selectize.bootstrap3.css" rel="stylesheet">
@@ -63,14 +64,27 @@
   <div class="main-container">
     
     <h3>T-tester</h3>
-    <p class="intro">The t-test tests for a difference in the mean of two samples. This calculator performs the unpaired t-test, which assumes that the samples are independent of one another.</p>
-    <p class="intro">The samples must also be similarly distributed & if the samples consist of less than 45 observations, they should be more or less symmetrical.</p>
+    
+    <div class="intro-container row">
+      
+      <div class="col-md-12">
+        
+        <p class="intro">The t-test tests for a difference in the mean of two samples. This calculator performs the unpaired t-test, which assumes that the samples are independent of one another.</p>
+        <p class="intro">The samples must also be similarly distributed & if the samples consist of less than 45 observations, they should be more or less symmetrical.</p>
+        
+      </div>
+      
+    </div>
     
     <div id="input-container" class="row">
       
-      <p id="test">Enter your test results here: </p>
+      <div class="col-md-12">
+        
+        <p id="test">Enter your sample sizes, means & standard deviations to run an unpaired t-test: </p>
+        
+      </div>
       
-      <div id="table-container" class="col-md-6">
+      <div id="table-container" class="col-md-8">
         <!--
         <label for="numGroups">Number of Groups in test: </label>
         <input id="numGroups" type="number" value="2" min="2">
@@ -84,7 +98,7 @@
         
       </div>
       
-      <div id="slider-container" class="col-md-6">
+      <div id="slider-container" class="col-md-4">
         <!--
         <form id="tails" action="">
           <input class="inline" type="radio" name="tail" value="1"> One Tailed
@@ -116,8 +130,10 @@
     
     <div class="row">
       
-      <div class="button-container col-md-12" id="run-container">
-        <div class="button" id="run">Run</div>
+      <div class="col-md-8">
+        <div id="run-container">
+          <div class="button" id="run">Run</div>
+        </div>
       </div>
       
     </div>
