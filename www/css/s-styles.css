@@ -74,6 +74,12 @@ html, body {
         fill: none;
         stroke: #325C74;
         stroke-width: 1.5px; }
+      html #output-container #chart #legend, body #output-container #chart #legend {
+        stroke: none;
+        color: #262523;
+        fill: #262523; }
+      html #output-container #chart a, body #output-container #chart a {
+        color: #666; }
     html #output-container #conclusion, body #output-container #conclusion {
       /*margin: 20px */ }
       html #output-container #conclusion #accept, body #output-container #conclusion #accept {

@@ -73,79 +73,65 @@ drawChartHor = function(cobj) {
   chart.append("g")
     .attr("class", "y axis")
     .call(yAxis);
-  /*
-  chart.append("g")
-    .attr("class", "lines")
-    .selectAll("line")
-    .data(cobj.data)
-    .enter().append("line")
-    .attr("x1", function(d) { return x(d[cobj.xvar]); })
-    .attr("x2", function(d) { return x(d[cobj.xvar]); })
-    .attr("y1", function(d) { return y(d.lower); })
-    .attr("y2", function(d) { return y(d.upper); })
-    .attr("stroke-width", 2);
-  *//*
-  chart.append("g")
-    .attr("class", "rects")
-    .selectAll("rect")
-    .data(cobj.data)
-    .enter().append("rect")
-    .attr("x", function(d) { return x(d.lower); })
-    .attr("y", function(d) { return y(d[cobj.yvar]); })
-    .attr("width", function(d) { return x(d.upper) - x(d.lower); })
-    .attr("height", y.rangeBand())
-    .style("fill", "#4562e7");//x.rangeRoundBand());
-    //.attr("stroke-width", 2);
-  */
-  
+
   chart.append("g")
     .attr("class", "lowerBounds")
     .selectAll("line")
     .data(cobj.data)
-    .enter().append("line.chartLine")
+    .enter().append("line")
+    .attr("class", function(d, i) { return "chartLine s" + i; })
     .attr("y1", function(d) { return y(d[cobj.yvar]); })
     .attr("x1", function(d) { return x(d.lower); })
     .attr("y2", function(d) { return y(d[cobj.yvar]) + 1*y.rangeBand(); })
-    .attr("x2", function(d) { return x(d.lower); });
-    
+    .attr("x2", function(d) { return x(d.lower); })
+    .on("mouseover", showTooltip)
+    .on("mouseout", removeTooltip);
   
   chart.append("g")
     .attr("class", "upperBounds")
     .selectAll("line")
     .data(cobj.data)
-    .enter().append("line.chartLine")
+    .enter().append("line")
+    .attr("class", function(d, i) { return "chartLine s" + i; })
     .attr("y1", function(d) { return y(d[cobj.yvar]); })
     .attr("x1", function(d) { return x(d.upper); })
     .attr("y2", function(d) { return y(d[cobj.yvar]) + 1*y.rangeBand(); })
-    .attr("x2", function(d) { return x(d.upper); });
-    
+    .attr("x2", function(d) { return x(d.upper); })
+    .on("mouseover", showTooltip)
+    .on("mouseout", removeTooltip);
   
   gConfInts = chart.append("g")
     .attr("class", "lines");
   
   gConfInts.selectAll("line")
+    .attr("class", "confint")
     .data(cobj.data)
-    .enter().append("line.chartLine")
+    .enter().append("line")
+    .attr("class", function(d, i) { return "chartLine s" + i; })
     .attr("y1", function(d) { return y(d[cobj.yvar]) + 0.5*y.rangeBand(); })
     .attr("x1", function(d) { return x(d.lower); })
     .attr("y2", function(d) { return y(d[cobj.yvar]) + 0.5*y.rangeBand(); })
-    .attr("x2", function(d) { return x(d.upper); });
-  
+    .attr("x2", function(d) { return x(d.upper); })
+    .on("mouseover", showTooltip)
+    .on("mouseout", removeTooltip);
+
   chart.append("g")
-    .attr("class", "circles")
     .selectAll("circle")
     .data(cobj.data)
     .enter().append("circle")
+    .attr("class", function(d, i) { return "circles s" + i; })
     .attr("cx", function(d) { return x(d[cobj.xvar]); })
     .attr("cy", function(d) { return y(d[cobj.yvar]) + 0.5*y.rangeBand(); })
     .attr("r", 5)
-    .style("fill", "#000");
+    .style("fill", "#000")
+    .on("mouseover", showTooltip)
+    .on("mouseout", removeTooltip);
   
   chart.append("g")
-    .attr("class", "texts")
     .selectAll("text")
     .data(cobj.data)
     .enter().append("text")
+    .attr("class", function(d, i) { return "texts s" + i; })
     .attr("x", function(d) { return x(d['lower']) - 5; })
     .attr("y", function(d) { return y(d[cobj.yvar]) + 0.1*y.rangeBand(); })
     .attr("dy", ".25em")
@@ -153,10 +139,10 @@ drawChartHor = function(cobj) {
     .style("text-anchor", "end");
   
   chart.append("g")
-    .attr("class", "texts")
     .selectAll("text")
     .data(cobj.data)
     .enter().append("text")
+    .attr("class", function(d, i) { return "texts s" + i; })
     .attr("x", function(d) { return x(d['upper']) + 5; })
     .attr("y", function(d) { return y(d[cobj.yvar]) + 0.1*y.rangeBand(); })
     .attr("dy", ".25em")
@@ -166,17 +152,18 @@ drawChartHor = function(cobj) {
 };
 
 // From http://bl.ocks.org/nbremer/801c4bb101e86d19a1d0
-showTooltip = function(d) {
+showTooltip = function(d, i) {
   
-	var element = d3.selectAll("circle.r" + d[idvar]);
-	var mapElement = d3.selectAll(".point.r" + d[idvar]);
+  console.log(i);
+  
+	var element = d3.selectAll(".circles.s" + i);
 	
 	var contentLines = [
-	  "<span style='font-size: 11px; text-align: center;'><b>" + d.Name + ", " + d.Country + "</b></span><br>",
-	  "",
-	  "<span style='font-size: 11px; text-align: center;'>Population: <b>" + d.PrettyPop + " (" + d.PrettyRank + ")" + "</b></span>"
+	  "<span style='font-size: 14px; text-align: center;'><b>" + d.groupName + "</b></span><br>",
+	  "<span style='font-size: 14px; text-align: center;'><b>Mean: " + "</b>" + d.mu + "</span><br>",
+	  "<span style='font-size: 14px; text-align: center;'><b>Conf. Interval: " + "</b>[" + d.lower + ", " + d.upper + "]</span><br>"
 	];
-	
+	/*
 	createContent = function(d) {
 	  if (d["Remark"].length > 0) {
 	    contentLines[1] = "<span style='font-size: 11px; text-align: center;'>" + "Also included: <b>" + d.PrettyRemark + "</b></span><br>";
@@ -185,38 +172,29 @@ showTooltip = function(d) {
 	    return contentLines;
 	  }
 	};
-	
-	var contentString = createContent(d);
+	*/
+	var contentString = contentLines;
 	
 	//Define and show the tooltip
 	$(element).popover({
 		placement: 'auto top',
-		container: '#circles',
+		container: '#chart',
 		trigger: 'manual',
 		html : true,
 		content: contentString
 	});
 	
 	$(element).popover('show');
-
-	//Make chosen circle more visible
-	element.attr("r", 6).style("fill", "#e67300").style("fill-opacity", 0.9);
-	mapElement.style("fill", "#000");
   
 };
 
-removeTooltip = function(d) {
+removeTooltip = function(d, i) {
 
-	var element = d3.selectAll(".circle.r" + d[idvar]);
-	var mapElement = d3.selectAll(".point.r" + d[idvar]);
+	var element = d3.selectAll(".circles.s");
 	
 	//Hide tooltip
 	$('.popover').each(function() {
 		$(this).remove();
 	});
-	
-	//Make chosen circle more visible
-	element.attr("r", 3).style("fill", "#fff").style("fill-opacity", 0.4);
-	mapElement.style("fill", "#333");
 		
 };
