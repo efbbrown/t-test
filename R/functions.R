@@ -6,12 +6,14 @@ dof <- function(n1, n2) {
 
 t_test <- function(n1, n2, mu1, mu2, s1, s2) {
   
-  deg_of <- dof(n1, n2)
+  # deg_of <- dof(n1, n2)
+  # 
+  # A <- (n1 + n2)/(n1*n2)
+  # B <- ((((n1 - 1)*s1)^2) + ((n2 - 1)*s2)^2)/(deg_of)
+  # 
+  # t <- abs(mu1 - mu2)/(sqrt(A*B))
   
-  A <- (n1 + n2)/(n1*n2)
-  B <- ((((n1 - 1)*s1)^2) + ((n2 - 1)*s2)^2)/(deg_of)
-  
-  t <- abs(mu1 - mu2)/(sqrt(A*B))
+  t <- abs((mu1 - mu2)/sqrt(((s1^2)/n1) + ((s2^2)/n2)))
   
   return(t)
   
@@ -25,7 +27,7 @@ p_value <- function(n1, n2, mu1, mu2, s1, s2) {
 }
 
 conf_int <- function(n, mu, sd, sig = .05) {
-  critical_t <- qt(1-sig,(n - 1))
+  critical_t <- qt(1-sig, df = (n - 1))
   lower <- mu - sd*critical_t
   upper <- mu + sd*critical_t
   return(c(lower, upper))

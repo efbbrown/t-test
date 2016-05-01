@@ -9,8 +9,16 @@ options(scipen = 99)
 shinyServer(function(input, output, session) {
 
   observe({
+    
+    cat(paste0(c("\n", input$values, "\n"), collapse = " "))
 
-    values <- input$values
+    values <- input$values[1:6]
+    
+    confint <- input$values[7]/100
+    
+    num_tails <- input$values[8]
+    
+    siglev <- 1 - confint
     
     # rm(x, pv, conf_ints, data)
 
@@ -23,7 +31,7 @@ shinyServer(function(input, output, session) {
       pv <- p_value(x[1,1], x[2,1], x[1,2],
                     x[2,2], x[1,3], x[2,3])
 
-      conf_ints <- data.table(t(apply(x, 1, function(r) return(round(conf_int(r[1], r[2], r[3]), digits = 2)))))
+      conf_ints <- data.table(t(apply(x, 1, function(r) return(round(conf_int(n = r[1], mu = r[2], sd = r[3], sig = siglev), digits = 2)))))
       
       setnames(conf_ints, c("lower", "upper"))
       # x <- matrix(values, ncol = 3, byrow = T)
@@ -49,7 +57,6 @@ shinyServer(function(input, output, session) {
       # 
       data <- list(pv, results_table)
       
-      cat(paste0(c(class(values), "\n", values, "\n", "\n", data, "\n")))
       # 
       jsonData <- toJSON(data)
       # 

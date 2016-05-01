@@ -76,20 +76,22 @@
         <input id="numGroups" type="number" value="2" min="2">
         -->
         
-      </div>
-      
-      <div id="slider-container" class="col-md-6">
-        
         <form action="">
-          <input class="inline" type="radio" name="tail" value="1"> One Tailed
-          <input class="inline" type="radio" name="tail" value="2"> Two Tailed<br>
-        </form>
-        
-        <form action="">
-          <label for="confint">Confidence Level: </label>
+          <label for="confint">Confidence Level (%): </label>
           <input class="input text" type="text" id="confint" value="95.00">
           <div id="slider-range"></div>
         </form>
+        
+      </div>
+      
+      <div id="slider-container" class="col-md-6">
+        <!--
+        <form id="tails" action="">
+          <input class="inline" type="radio" name="tail" value="1"> One Tailed
+          <input class="inline" type="radio" name="tail" value="2" checked> Two Tailed<br>
+        </form>
+        -->
+        
         <!--
         <label for="confint">Confidence Level: </label>
         <input type="range" id="confint" min="1" value="95" max="99.99" step=".01">

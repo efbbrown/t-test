@@ -45,7 +45,7 @@ $(document).ready(function() {
       $( "#confint" ).val( ui.value );
     }
   });
-  $("#confint").val( $("#slider-range").slider("value"));
+  $("#confint").val($("#slider-range").slider("value"));
   
   /************************************************/
   /*          Send & receive R data               */
@@ -102,12 +102,16 @@ $(document).ready(function() {
       $("#p-value").html(" = " + p_value);
     }
     
-    var $accept = $("#accept"), $verdict = $("#verdict");
+    var $accept = $("#accept"), $verdict = $("#verdict"),
+        $conflevel = $("#conf-level"), $confint = +$("#confint").val(),
+        $siglev = 1 - $confint/100;
 
-    if (p_value < 0.05) {
+    $conflevel.html(" " + $confint + "%");
+
+    if (p_value < $siglev) {
       $accept.css({"background-color": "#10a708"}).html("Yes");
       $verdict.html("There is evidence to suggest with 95% confidence that the means of the sample populations are unequal.");
-    } else if (p_value > 0.05) {
+    } else if (p_value > $siglev) {
       $accept.css({"background-color": "#aa3939"}).html("No");
       $verdict.html("There is insufficient evidence to conclude that the means of the sample populations are unequal.");
     }
