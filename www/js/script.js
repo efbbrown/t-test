@@ -113,7 +113,7 @@ $(document).ready(function() {
       $verdict.html("There is evidence to suggest with " + $confint + "% confidence that the population means are unequal.");
     } else if (p_value > $siglev) {
       $accept.css({"background-color": "#aa3939"}).html("No");
-      $verdict.html("There is insufficient evidence to conclude that the means of the sample populations are unequal.");
+      $verdict.html("There is insufficient evidence to conclude that the populations means are unequal.");
     }
     
   });

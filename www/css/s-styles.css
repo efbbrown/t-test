@@ -8,15 +8,18 @@ html, body {
   font-family: monospace; }
   html h3, body h3 {
     padding: 40px 20% 20px;
-    font-size: 44px;
+    font-size: 48px;
     width: 90%;
+    text-decoration: underline;
     margin: 20px auto;
     font-family: "Roboto Slab", serif; }
   html p, body p {
     font-family: "Open Sans", sans-serif;
     font-size: 20px; }
-  html p.intro, body p.intro {
-    color: #4b4945; }
+  html .intro, body .intro {
+    font-family: "Open Sans", sans-serif; }
+  html ul, body ul {
+    list-style: none; }
   html .button, body .button {
     font-size: 18px;
     font-family: "Open Sans", sans-serif;
@@ -36,6 +39,14 @@ html, body {
     display: inline; }
   html .col-md-6, body .col-md-6 {
     margin: auto; }
+  html #list-container, body #list-container {
+    margin-left: 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    color: #4b4945; }
+    html #list-container h5.intro, body #list-container h5.intro {
+      font-size: 18px;
+      text-decoration: underline; }
   html #run-container, body #run-container {
     margin-left: 10%;
     margin-top: 20px; }
@@ -47,6 +58,8 @@ html, body {
       width: 80%; }
     html #input-container table, body #input-container table {
       border-collapse: collapse; }
+      html #input-container table input, body #input-container table input {
+        padding: 3px; }
       html #input-container table table th, html #input-container table td, body #input-container table table th, body #input-container table td {
         padding: 2px;
         color: #262523; }

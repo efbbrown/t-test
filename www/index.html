@@ -1,6 +1,8 @@
 <html>
 <head>
 
+  <title>E. Brown - T test</title>
+  <link rel="icon" href="imgs/favicon.ico">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
   <script type="application/shiny-singletons"></script>
   <script type="application/html-dependencies">json2[2014.02.04];jquery[1.11.3];shiny[0.13.2];selectize[0.11.2];bootstrap[3.3.5]</script>
@@ -61,14 +63,28 @@
   
   <div class="main-container">
     
-    <h3>T-tester</h3>
+    <h3>T-test calculator</h3>
     
     <div class="intro-container row">
       
       <div class="col-md-12">
         
-        <p class="intro">The t-test tests for a difference in the mean of two samples. This calculator performs the unpaired t-test, which assumes that the samples are independent of one another.</p>
-        <p class="intro">The samples must also be similarly distributed & if the samples consist of less than 45 observations, they should be more or less symmetrical.</p>
+        <p class="intro">Use this calculator to test for a difference in the population means of two samples using an unpaired t-test.</p>
+        
+        <div id="list-container">
+          <h5 class="intro">Common Applications</h5>
+          <ul class="intro">
+            <li>Health - Comparing responses to treatment between test groups.</li>
+            <li>Market Research - Comparing focus group responses to products.</li>
+            <li>Manufacturing - Comparing product quality accross machinery, factories or proceses.</li>
+          </ul>
+          <h5 class="intro">Assumptions</h5>
+          <ul class="intro">
+            <li class="intro">The samples are independent of one another.</li>
+            <li class="intro">If sample sizes are < 15, their distributions should suggest normality.</li>
+            <li class="intro">If sample sizes are < 45, they should show no skewness or include outliers.</li>
+          </ul>
+        </div>
         
       </div>
       
