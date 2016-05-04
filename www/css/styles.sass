@@ -1,11 +1,15 @@
 @import 'constants'
+@import 'bourbon/bourbon'
 
+html
+  +linear-gradient(33deg, $start-color, $end-color)
 html, body
-  width: $body-width
   max-width: 100%
+body
+  width: $body-width
   margin: 30px auto
   padding: 0 5px
-  background-color: $bg-color
+  background: none
   color: $font-color-1
   font-family: monospace
   h3
@@ -34,6 +38,9 @@ html, body
     text-align: center
     background-color: $button-bg-color
     color: $font-color-2
+    cursor: pointer
+  .button:hover
+    background-color: darken($button-bg-color, 30)
   .bold
     font-weight: bold
   .hidden
@@ -77,6 +84,7 @@ html, body
     max-width: 100%
     width: 1000px
     #chart
+      margin: 400px auto
       /*width: 500px*/
       height: 300px
       .axis path, .axis line
