@@ -116,7 +116,7 @@ body {
     max-width: 100%;
     width: 1000px; }
     body #output-container #chart {
-      margin: 400px auto;
+      margin: auto;
       /*width: 500px */
       height: 300px; }
       body #output-container #chart .axis path, body #output-container #chart .axis line {
