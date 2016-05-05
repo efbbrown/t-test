@@ -118,4 +118,28 @@ $(document).ready(function() {
     
   });
   
+  /************************************************/
+  /*          Show & hide dropdowns               */
+  /************************************************/
+    
+  $("#assumptions-header").click(function() {
+    if ( $("#assumptions-list").is(":hidden")) {
+      $("#assumptions-list").slideDown();
+      $("#assumptions-arrow").attr("class", "arrow-down");
+    } else {
+      $("#assumptions-list").slideUp();
+      $("#assumptions-arrow").attr("class", "arrow-right");
+    }
+  });
+  
+  $("#applications-header").click(function() {
+    if ( $("#applications-list").is(":hidden")) {
+      $("#applications-list").slideDown();
+      $("#applications-arrow").attr("class", "arrow-down");
+    } else {
+      $("#applications-list").slideUp();
+      $("#applications-arrow").attr("class", "arrow-right");
+    }
+  });
+  
 });
